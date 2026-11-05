@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="pl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex">
+<title>Kalkulator opłat – Domino Nieruchomości Stalowa Wola</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/sub.css"><script defer src="../assets/sub.js"></script></head><body>
+<a class="skip" href="#tresc">Przejdź do treści</a>
+<header class="bar" id="bar"><a class="logo" href="../" aria-label="Biuro Nieruchomości DOMINO, strona główna"><span><img alt="Domino Nieruchomości" width="110" height="40" src="https://nieruchomosci-stw.pl/wp-content/uploads/2019/07/logo_b.png"></span></a>
+<ul class="links" id="menu"><li><a href="../oferty/">Oferty</a></li><li><a href="../#jak-dzialamy">Jak działamy</a></li><li><a href="../#opinie">Opinie</a></li><li><a href="../#uslugi">Usługi</a></li><li><a href="../kategoria/blog/">Blog</a></li><li><a href="#kontakt">Kontakt</a></li></ul>
+<div class="side-b"><a class="tel" href="tel:+48153070360">15 30 70 360</a><a class="cta" href="../dodaj-nieruchomosc/">Zgłoś nieruchomość</a><button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="menu"></button></div></header>
+<main id="tresc"><div class="wrap page-top"><div class="page-bar"><button class="btn-back" type="button" data-history-back aria-label="Wróć"><svg class="ico" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M40 12 20 32l20 20"/></svg><span>Wróć</span></button><nav class="crumbs" aria-label="Okruszki"><a data-home-link href="../">Strona główna</a><span>/</span><span aria-current="page">Kalkulator opłat</span></nav></div><header class="sub-head"><h1>Kalkulator opłat</h1></header></div><section class="body"><div class="wrap narrow calc"><p><script language="JavaScript">
+<!--
+function check() {
+var a = "0123456789";
+var taksa_notarialna = 0;
+var oplata_skarbowa = 0;
+var VAT_od_taksy = 0;
+
+var prowizja = 0;
+prowizja_procent = 0;
+var oplata_sadowa = 0;
+var oplaty_dod = 0;
+var suma = 0;
+//var ksiega=1;
+
+form = document.forms['kalkulator'];
+wartosc = form.elements['cenam'].value;
+//waluta = form.elements['Wartosc_currency'].options[form.elements['Wartosc_currency'].selectedIndex].value;
+waluta = form.elements['Wartosc_currency'].value;
+
+i = wartosc.length - 1;
+err = true;
+j = 0;
+for (var j = 0; j < a.length; j++) {
+if (wartosc.charAt(i) == a.charAt(j))
+err = false;
+}
+if (err)
+form.elements['cenam'].value = wartosc.substring(0,i);
+
+if ((wartosc.length == 1) && (wartosc == 0)) {
+form.elements['cenam'].value = wartosc.substring(0,i);
+}
+
+cenam = parseFloat(wartosc) * parseFloat(waluta);
+
+if (wartosc.length == 0)
+cenam = 0;
+
+if (form.elements['oplata1'].checked)
+oplata_skarbowa = cenam * 0.02;
+else
+oplata_skarbowa = cenam * 0.02;
+
+oplata_skarbowa = (Math.round(oplata_skarbowa * 100))/100;
+if (!isNaN(oplata_skarbowa)){
+	if (document.all.oplataskarbowa_lista.options[document.all.oplataskarbowa_lista.selectedIndex].value=="2"){
+		form.elements['oplataskarbowa'].value = oplata_skarbowa.toString(10);
+	}else{
+		form.elements['oplataskarbowa'].value =0;
+		oplata_skarbowa=0;
+	}
+}
+if (form.elements['oplata1'].checked) {
+	if ((cenam > 0) && (cenam <= 3000))
+		taksa_notarialna = 100
+	if ((cenam > 3000) && (cenam <= 10000))
+		taksa_notarialna = (100 + ((cenam - 3000)*0.03))/2;
+	if ((cenam > 10000) && (cenam <= 30000))
+		taksa_notarialna = (310 + ((cenam - 10000)*0.02))/2;
+	if ((cenam > 30000) && (cenam <= 60000))
+		taksa_notarialna = (710 + ((cenam - 30000)*0.01))/2;
+	if ((cenam > 60000) && (cenam <= 1000000))
+		taksa_notarialna = (1010 + ((cenam - 60000)*0.004))/2;
+	if ((cenam > 1000000) && (cenam <= 2000000))
+		taksa_notarialna = (4770 + ((cenam - 1000000)*0.002))/2;
+	if (cenam > 2000000)
+		taksa_notarialna = (6770 + ((cenam - 1000000)*0.0025))/2;
+}
+
+else if (form.elements['oplata2'].checked) {
+	if ((cenam > 0) && (cenam <= 3000))
+		taksa_notarialna = 100/2
+	if ((cenam > 3000) && (cenam <= 10000))
+		taksa_notarialna = (100 + ((cenam - 3000)*0.03));
+	if ((cenam > 10000) && (cenam <= 30000))
+		taksa_notarialna = (310 + ((cenam - 10000)*0.02));
+	if ((cenam > 30000) && (cenam <= 60000))
+		taksa_notarialna = (710 + ((cenam - 30000)*0.01));
+	if ((cenam > 60000) && (cenam <= 1000000))
+		taksa_notarialna = (1010 + ((cenam - 60000)*0.004));
+	if ((cenam > 1000000) && (cenam <= 2000000))
+		taksa_notarialna = (4770 + ((cenam - 1000000)*0.002));
+	if (cenam > 2000000)
+		taksa_notarialna = (6770 + ((cenam - 1000000)*0.0025));
+}
+
+taksa_notarialna = (Math.round(taksa_notarialna * 100))/100;
+
+if (!isNaN(taksa_notarialna))
+form.elements['taksanotarialna'].value = taksa_notarialna.toString(10);
+
+VAT_od_taksy = taksa_notarialna * 0.23;
+
+VAT_od_taksy = (Math.round(VAT_od_taksy * 100))/100;
+if (!isNaN(VAT_od_taksy))
+form.elements['vatodtaksy'].value = VAT_od_taksy.toString(10);
+
+prowizja_procent = form.elements['prowizjaprocent'].value;
+
+i = prowizja_procent.length - 1;
+
+err = true;
+j = 0;
+for (var j = 0; j < a.length; j++) {
+if (prowizja_procent.charAt(i) == a.charAt(j))
+err = false;
+}
+if ((prowizja_procent.charAt(i) == ",") || (prowizja_procent.charAt(i) == ".")) {
+//form.elements['prowizjaprocent'].value = prowizja_procent.substring(0,i) + ".";
+err = false }
+if (err)
+//form.elements['prowizjaprocent'].value = prowizja_procent.substring(0,i);
+if ((wartosc.length == 1) && (wartosc == 0)) {
+//form.elements['prowizjaprocent'].value = prowizja_procent.substring(0,i);
+}
+
+prowizja_procent = parseFloat(prowizja_procent);
+if (prowizja_procent.length == 0)
+prowizja_procent = 0;
+
+prowizja = cenam * prowizja_procent * 0.01;
+
+prowizja = (Math.round(prowizja * 100))/100;
+if (!isNaN(prowizja))
+form.elements['prowizja'].value = prowizja.toString(10);
+
+if (form.elements['oplata1'].checked && form.elements['ksiega'].checked==false) {
+//if (form.elements['oplata1'].checked && ksiega==0) {
+oplata_sadowa = 0;
+
+form.elements['oplatasadowa'].value = "nie ma";
+//form.elements['oplatasadowa'].value = oplata_sadowa;
+}
+else if (form.elements['oplata2'].checked || form.elements['ksiega'].checked==true) {
+//else if (form.elements['oplata2'].checked || ksiega==1) {
+	if ((cenam > 0) && (cenam <= 10000))
+	oplata_sadowa = cenam * 0.08;
+	if ((cenam > 10000) && (cenam <= 50000))
+	oplata_sadowa = 800 + ((cenam - 10000) * 0.07);
+	if ((cenam > 50000) && (cenam <= 100000))
+	oplata_sadowa = 3600 + ((cenam - 50000) * 0.06);
+	if (cenam > 100000)
+	oplata_sadowa = 6600 + ((cenam - 100000) * 0.05);
+	
+oplata_sadowa = oplata_sadowa * 0.2;
+if (oplata_sadowa < 30)
+oplata_sadowa = 30;
+if (oplata_sadowa > 100000)
+oplata_sadowa = 100000;
+oplata_sadowa = (Math.round(oplata_sadowa * 100))/100;
+	if (!isNaN(oplata_sadowa) ){
+	oplata_sadowa=200;
+	form.elements['oplatasadowa'].value = 200; // oplata_sadowa.toString(10);
+	}
+	else
+	{
+	oplata_sadowa=0;
+	form.elements['oplatasadowa'].value = "";}
+}
+if (form.elements['cenam'].value > 1) {
+document.kalkulator.wypis_aktu.readOnly=false;
+}else{
+document.kalkulator.wypis_aktu.readOnly=true;
+}
+
+//if (prowizja>0 && prowizja<=500) prowizja=500;
+if (!isNaN(prowizja))
+form.elements['prowizjaagencji'].value = prowizja.toString(10);
+else
+form.elements['prowizjaagencji'].value = "0";
+
+if (form.elements['oplata2'].checked)	
+wypisy = 200 ;
+else
+wypisy = 200 ;
+if (!isNaN(wypisy))
+form.elements['wypis_aktu'].value = wypisy.toString(10);
+else
+form.elements['wypis_aktu'].value = "0";
+
+if (form.elements['oplata1'].checked && form.elements['ksiega'].checked==false) {
+wnioskesad = 0;
+form.elements['wniosek'].value = "nie ma";
+}
+else if (form.elements['oplata2'].checked || form.elements['ksiega'].checked==true) {
+
+wnioskesad=246;
+	if (!isNaN(wnioskesad) )
+	form.elements['wniosek'].value = wnioskesad.toString(10);
+	else
+	form.elements['wniosek'].value = "";
+}
+
+//oplaty_dod = taksa_notarialna + oplata_skarbowa + VAT_od_taksy + oplata_sadowa + prowizja;
+//alert (taksa_notarialna + ' ' +oplata_skarbowa +  ' ' +VAT_od_taksy + ' ' +oplata_sadowa + ' ' +prowizja+' ' +wypisy+' ' +vatagencja+ ' ' +wnioskesad);
+oplaty_dod = taksa_notarialna + oplata_skarbowa +  VAT_od_taksy + oplata_sadowa + prowizja+wypisy+wnioskesad;
+oplaty_dod = (Math.round(oplaty_dod * 100))/100;
+if (!isNaN(oplaty_dod))
+form.elements['oplatydod'].value = oplaty_dod.toString(10);
+
+suma = cenam + oplaty_dod;
+suma = (Math.round(suma * 100))/100;
+
+if (!isNaN(suma))
+form.elements['suma'].value = suma.toString(10);
+
+}
+function change(r1,r2) {
+if (r1.checked)
+r2.checked = false;
+}
+
+//-->
+</script></p>
+<div class="kalk">
+<p><b>UWAGA: Kalkulator oblicza przybliżone koszty transakcji!</b></p>
+<form name="kalkulator" method="post">
+<p><b>Rodzaj opłaty:</b></p>
+<p></p>
+<p style="text-align:left">
+<input value="ok" type="radio" name="oplata1" onClick="change(document.kalkulator.oplata1, document.kalkulator.oplata2); check(); " >Mieszkanie spółdzielcze &#8211; własnościowe, mieszkanie stanowiące odrębną nieruchomość<br />
+<input value="1" type="checkbox" name="ksiega" onClick="javascript:check();"> z księgą wieczystą<br />
+<br />
+<input value="ok" type="radio" name="oplata2" onClick="change(document.kalkulator.oplata2, document.kalkulator.oplata1); check(); " checked>Nieruchomość (dom, działka)
+</p>
+<div class="row-fluid">
+<div class="span6">
+<b>Cena nieruchomości:</b>
+</div>
+<div class="span2">
+<input  type="text" name="cenam" size="10" onKeyPress="check(); " onKeyUp="check(); " onKeyDown="check(); " maxlength="10" value="0"> PLN<br />
+<input type="hidden" name="Wartosc_currency" value="1" size="10" readonly>
+</div>
+</div>
+<div class="row-fluid">
+<div class="span6">
+Podatek od czynności cywilnoprawnych<select class="podatek" name="oplataskarbowa_lista" onChange="check();" ><option value="2" onClick="check();"> 2%</option><option value="0" onClick="check();"> 0%</option></select>
+</div>
+<div class="span2">
+<input type="text" name="oplataskarbowa" size="10" readonly > PLN
+</div>
+</div>
+<div class="row-fluid">
+<div class="span6">
+Taksa notarialna:
+</div>
+<div class="span2">
+<input type="text"  name="taksanotarialna" size="10" readonly > PLN
+</div>
+</div>
+<div class="row-fluid">
+<div class="span6">
+VAT od taksy notarialnej (23%):
+</div>
+<div class="span2">
+<input type="text"  name="vatodtaksy" size="10" readonly > PLN
+</div>
+</div>
+<div class="row-fluid">
+<div class="span6">
+<b>Wynagrodzenie Agencji Nieruchomości(%):</b><input type="hidden" value="0" name="prowizja" size="5" maxlength="8" onKeyPress="check(); " onKeyUp="check(); " onKeyDown="check(); ">
+</div>
+<div class="span2">
+<select  name="prowizjaprocent" onKeyPress="check(); " onKeyUp="check(); " onChange="check();" style=" width:50px;"><option value="0.0" selected >0 </option><option value="1" >1.0 </option><option value="1.1" >1.1 </option><option value="1.2" >1.2 </option><option value="1.3" >1.3 </option><option value="1.4" >1.4 </option><option value="1.5" >1.5 </option><option value="1.6" >1.6 </option><option value="1.7" >1.7 </option><option value="1.8" >1.8 </option><option value="1.9" >1.9 </option><option value="2.0" >2 </option><option value="2.1" >2.1 </option><option value="2.2" >2.2 </option><option value="2.3" >2.3 </option><option value="2.4" >2.4 </option><option value="2.5" >2.5 </option><option value="2.6" >2.6 </option><option value="2.7" >2.7 </option><option value="2.8" >2.8 </option><option value="2.9" >2.9 </option><option value="3" >3 </option></select>%
+</div>
+</div>
+<div class="row-fluid">
+<div class="span6">
+Wynagrodzenie Agencji:
+</div>
+<div class="span2">
+<input  type="text" name="prowizjaagencji" size="10" readonly > PLN
+</div>
+</div>
+<div class="row-fluid">
+<div class="span6">Koszty sądowe:
+</div>
+<div class="span2">
+<input  type="text" name="oplatasadowa" size="10" readonly > PLN
+</div>
+</div>
+<div class="row-fluid">
+<div class="span6">Wypisy aktu notarialnego (średnio z VAT-em):
+</div>
+<div class="span2"><input  type="text" name="wypis_aktu" size="10"  readonly  value=""> PLN
+</div>
+</div>
+<div class="row-fluid">
+<div class="span6">Taksa notarialna za wniosek do sądu (łącznie z VAT-em):
+</div>
+<div class="span2"><input  type="text" name="wniosek" size="10" readonly > PLN
+</div>
+</div>
+<div class="row-fluid">
+<div class="span6">Suma opłat:</div>
+<div class="span2"><input  type="text" name="oplatydod" size="10" readonly > PLN
+</div>
+</div>
+<div class="row-fluid">
+<div class="span6">Całkowity koszt transakcji:
+</div>
+<div class="span2"><input  type="text" name="suma" size="10" readonly > PLN
+</div>
+</div>
+<div class="row-fluid">
+<div class="span6">
+Uwaga!!! Kalkulator jest tylko pomocą, która pozwala zapoznać się z orientacyjnymi kosztami zakupu nieruchomości.
+</div>
+<div class="span2">
+<script language="javascript">
+<!--
+if (navigator.appName == "Netscape")
+document.write("&nbsp;&nbsp;<input type='button' onClick='check(); ' value=' Oblicz '>")
+//-->
+</script>
+</div>
+</div>
+</form>
+</div>
+<p><script language="JavaScript">
+<!--
+check();
+if (form.elements['cenam'].value > 1) {
+document.kalkulator.wypis_aktu.readOnly=false;
+}else{
+document.kalkulator.wypis_aktu.readOnly=true;
+}
+//-->
+</script><br />
+<div class='printomatic pom-default ' id='kalk1'  data-print_target='.kalk'></div></p>
+</div></section></main>
+<section class="sec" id="kontakt"><div class="contact"><div><p class="lead">Biuro Nieruchomości DOMINO</p><p style="margin-top:12px">Marta Świątek<br>Justyna Dzięgiel-Czerwiak</p></div>
+<div><h3>Kontakt</h3><p><a href="tel:+48153070360">15 30 70 360</a><br><a href="tel:+48509026303">509 026 303</a><br><a href="tel:+48535026333">535 026 333</a><br><a href="mailto:domino@nieruchomosci-stw.pl">domino@nieruchomosci-stw.pl</a></p></div>
+<div><h3>Biuro</h3><p>al. Jana Pawła II 25/2<br>Budynek TKB, parter<br>37-450 Stalowa Wola<br>pon.–pt. 9.30–17.00</p></div>
+<div><h3>Oferta</h3><ul><li><a href="../oferta/inwestycje-deweloperskie/">Inwestycje deweloperskie</a></li><li><a href="../oferta/mieszkania-sprzedaz/">Mieszkania</a></li><li><a href="../oferta/domy-sprzedaz/">Domy</a></li><li><a href="../oferta/dzialki-sprzedaz/">Działki</a></li><li><a href="../oferta/lokale-sprzedaz/">Lokale</a></li></ul></div></div></section>
+<footer><span>© Biuro Nieruchomości DOMINO</span><span>Stalowa Wola · Nisko · Pysznica · Rozwadów · Zaleszany · Jastkowice</span></footer>
+</body></html>
